@@ -1,0 +1,51 @@
+%%%%-- SfS typical hyperref setup --- mainly for pdflatex -- M.Mächler
+
+\ProvidesPackage{sfs-hyper}%%-- to be ``required'' by other *.sty files
+
+\RequirePackage{url}
+
+% % -- don't see how this is ever used:
+% \newif\ifDviToo
+% \DeclareOption{always}{\DviTootrue}
+% %%--- Execution of options ---
+% \DviToofalse% << default
+% \ProcessOptions
+
+\RequirePackage{ifpdf}%-> defines this \if correctly:
+\ifpdf%%--- `pdflatex' :  --------- still gives error on ... \global ...
+  \message{ifpdf was true... --- PDF}
+
+  %% The following is R's share/texmf/Rd.sty
+  \RequirePackage{color}    
+  \RequirePackage[hyperindex,pagebackref]{hyperref}
+  %% <NOTE>
+  %% Formerly in R's hyperref.cfg, possibly to be shared with Sweave.sty
+  %% as well (but without setting pagebackref as this can give trouble
+  %% for .bib entries containing URLs with '#' characters).
+
+  %% <NOTE> Y.W. 19.10.2022
+  %% some options needs to be declare at the time of the use of hyperref
+  %% i.e. \usepackage[OPTIONS]{hyperref} or
+  %% \RequirePackage[OPTIONS]{hyperref}
+  %% Otherwise, errors/warning like
+  %%    Package hyperref Warning: Option `hyperindex' has already been used,
+  %%    (hyperref)                setting the option has no effect on input line 38.
+  \definecolor{Blue}{rgb}{0,0,0.8}
+  \definecolor{Red}{rgb}{0.7,0,0}
+  \hypersetup{%
+    % hyperindex,% needs to declare in RequirePackage[hyperindex]
+    colorlinks={true},%
+    % pagebackref,% needs to declare in RequirePackage[hyperindex]
+    linktocpage,%
+    plainpages={false},%
+    linkcolor={Blue},%
+    citecolor={Blue},%
+    urlcolor={Red},%
+    pdfstartview={Fit},%
+    pdfview={XYZ null null null}%
+  }
+  %% </NOTE>
+\else%%--- simple ``latex'':
+  %% Stuff w/out hyperref
+  \message{ifpdf was false --- ``simple latex'' --- no PDF}
+\fi
