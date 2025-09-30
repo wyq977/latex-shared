@@ -1,7 +1,7 @@
 library(ggplot2)
 
-w <- 6.4
-h <- 4.8
+w <- 2.8
+h <- 2.1
 
 p <- ggplot(mtcars, aes(mpg, wt)) +
   geom_point(size = 0.5) +
@@ -10,12 +10,10 @@ p <- ggplot(mtcars, aes(mpg, wt)) +
   ylab("supermartingale (log scale)") +
   coord_cartesian(clip = "off") +
   theme(
-    plot.margin = margin(5.5, 5.5, 5.5, 5.5, unit = "pt"),
-    # 1. ADD a panel border for the box
+    plot.margin = margin(0, 0, 0, 0, unit = "pt"),
     panel.border = element_rect(colour = "black", fill = NA, linewidth = 0.4 / .pt),
-    # 2. REMOVE the default axis lines to prevent overlap
     axis.line = element_blank()
   )
   
 
-ggsave("scatterplot-R.pdf", p, width=w, height=h, units="cm", device=cairo_pdf)
+ggsave("scatterplot-R.pdf", p, width=w, height=h, units="in", device=cairo_pdf)

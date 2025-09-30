@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[
+    papersize={3in,2.25in},
+    margin=0pt
+]{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[scaled=.9]{helvet}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,   
+    height=\textheight
+]
+\draw[gray, thick] (-1,2) -- (2,-4);
+\draw[gray, thick] (-1,-1) -- (2,2);
+\filldraw[black] (0,0) circle (2pt) node[anchor=west]{Intersection point};
+
+\end{axis}
+
+\end{tikzpicture}
+\end{document}
