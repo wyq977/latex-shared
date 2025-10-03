@@ -4,10 +4,6 @@ import matplotlib.pyplot as plt
 from matplotlib import rcParams
 from matplotlib.ticker import MaxNLocator
 
-# rcParams.update({
-#     "text.usetex": False
-# })
-
 WIDTH_IN = 2.8
 HEIGHT_IN = 2.1
 
@@ -21,9 +17,8 @@ ax.plot(x, y, label=r'$\mathcal{N}(0, 1)$', linewidth=1, color='red')
 
 ax.plot(x, norm.pdf(x, loc=0, scale=4), label=r'$\mathcal{N}(0, 4)$', linewidth=1, color='blue')
 
-# ax.set_title('Normal distribution $\\mathcal{N}(0,1)$')
-ax.set_xlabel('Python and LaTex: $x$')
-ax.set_ylabel('Python and LaTex: $y$')
+ax.set_xlabel('Python and LaTeX: $x$')
+ax.set_ylabel('Python and LaTeX: $y$')
 ax.set_ylim(bottom=np.max(y) * -0.05, top=np.max(y) * 1.05) 
 ax.xaxis.set_major_locator(MaxNLocator(5))
 ax.yaxis.set_major_locator(MaxNLocator(5))

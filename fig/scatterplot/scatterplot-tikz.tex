@@ -1,42 +1,43 @@
 \documentclass[tikz,border=0pt]{standalone}
 \usepackage{pgfplots}
 \usepackage{newtxtext}
-% \usepackage{times}
-% \usepackage[scaled=.9]{helvet}
-%\renewcommand{\familydefault}{\sfdefault}
-\pgfplotsset{compat=1.18,width=2.8in,height=2.1in}
+\usepackage{amsmath} % Required for \mathcal
+\usepackage{fix-cm}
+\usepackage{tikzscale}
+\pgfplotsset{compat=1.18,width=5.6in,height=2.1in}
 
-% Apply the exact pt dimensions to the axis environment
 \begin{document}
-
 \begin{tikzpicture}
 \begin{axis}[
     axis lines=box,
     tick align=outside,
-    tick style={draw=black, major tick length=3pt},
+    tick style={draw=black, major tick length=3pt, line width=0.4pt},
     xtick pos=bottom, ytick pos=left,
     /pgf/number format/assume math mode=true,
-    xlabel={sample size}, ylabel={supermartingale (log scale)},
-    label style={font=\fontsize{8}{5}\selectfont},
-    tick label style={font=\fontsize{6.4}{4}\selectfont},
-    legend pos=north west,
+    xlabel={TikZ and \LaTeX: $x$},
+    ylabel={TikZ and \LaTeX: $y$},
+    label style={font=\fontsize{8}{8}\selectfont},
+    tick label style={font=\fontsize{6}{6}\selectfont},
+    legend pos=north east,
     legend style={
-    	font=\sffamily\fontsize{5}{5}\selectfont,
-    	draw=none
+    	font=\fontsize{6}{6}\selectfont,
+    	draw=black,
+        line width=0.4pt
     	},
     legend image post style={
-        xscale=0.3
-    }
+        xscale=0.3 % Makes the legend line segments shorter
+    },
+    ymin=-0.02,
+    enlarge y limits={upper, value=0.05} % Adds 5% padding to the top
 ]
 
-\addplot[color=red] coordinates {(1,1) (2,2) (3,3)};
-\addplot[color=blue] coordinates {(1,2) (2,1.5) (3,2.5)};
 
-%\addplot table[x=dof, y=L2] {data.dat};
+\addplot[color=red, thick, no markers] table[col sep=comma, header=true, x=x, y=y1] {data.csv};
+\addlegendentry{{$\mathcal{N}(0, 1)$}};
 
-\legend{A $A$ ,B $B$}
+\addplot[color=blue, thick, no markers] table[col sep=comma, header=true, x=x, y=y2] {data.csv};
+\addlegendentry{{$\mathcal{N}(0, 1)$}};
 
 \end{axis}
 \end{tikzpicture}
-
 \end{document}
