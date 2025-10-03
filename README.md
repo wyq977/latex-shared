@@ -1,10 +1,9 @@
 # Using LaTeX in a smart way
 
 This repo can be seen as a example document following the best
-practices (set by me).## Fig
-## Scatterplot
+practices (set by me).
 
-
+Read [PDF](https://raw.githubusercontent.com/wyq977/latex-shared/refs/heads/main/main.pdf)
 
 ## Others
 
