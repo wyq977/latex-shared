@@ -1,4 +1,8 @@
 % This is file `imsart.sty'
+
+%% CHANGELOG:
+%% 2025-10-03: add fix-cm in aos to avoid warnings
+%% 
 %%
 %% LaTeX 2e style file for the processing of LaTeX2e files
 %% of the following IMS/BS journals:
@@ -2849,6 +2853,7 @@
     \RequirePackage[scaled=.9]{helvet}
     \RequirePackage{textcomp}
     \RequirePackage{textcase}
+    \RequirePackage{fix-cm} % Add fix for cm font size warnning
     \def\@xipt{11}
     \def\@xivpt{14}
     \def\@xvipt{16}

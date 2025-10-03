@@ -5,7 +5,7 @@
 \usepackage[colorlinks,citecolor=blue,urlcolor=blue,colorlinks=true,linkcolor=blue]{hyperref}
 \usepackage{caption}                             % show plain tex
 \usepackage{fancyvrb}                            % extended verbatim environments
-\fvset{fontsize=\normalsize}                     % default font size for fancy-verbatim en
+\fvset{fontsize=\footnotesize}                   % default font size for fancy-verbatim en
 % https://stackoverflow.com/questions/55036409/latex-verbatimhow-to-show-the-file-directoy-created-by-tree-command
 \usepackage[utf8]{inputenc}
 \usepackage{pmboxdraw}
@@ -14,27 +14,50 @@
 
 \title{\LaTeX\ Project Management}
 
-A consistent boilerplate for \LaTeX\ projects,
-I choose AOS for regular articles, please check
-\url{https://vtex-soft.github.io/texsupport.ims-aos/} for more details
+To be consistent for most \LaTeX\ projects,
+I choose AOS's preprint version as the default, please check
+\url{https://vtex-soft.github.io/texsupport.ims-aos/} for more details.
 
 The references are managed externally by Zotero and BBT,
 exported to BibTex format, then included via \verb|natbib|.
 
-\section{Project Structure}
+\section{Font size warnings}
 
-\subsection{Shared Files}
+Sometimes you will see warnings like
+\begin{Verbatim}
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
+(Font)              size <5> substituted on input line 50.
+\end{Verbatim}
 
-For example, I would like to have AOS template as the default but do not wish
-to include the \texttt{.cls} in each folder.
-This can be achieved locally when writing in Texifier.
-Most importantly, I can now sourced my \texttt{macro.tex} anywhere.
+It is usually solved by \verb|lmodern|, \verb|anyfontsize| and \verb|fix-cm| (which I used) packages.
 
-Ideally, my bib should also be centralized.
+\section{Formatting}
 
-% TODO: add sync. latex shared folders
+Ended up using the \verb|latexindent| that comes with MacTeX distribution.
+It can be updated in TeX Live Utility.app, the default settings can be found in \verb|indent.log|:
+\begin{Verbatim}
+/usr/local/texlive/2025/texmf-dist/scripts/latexindent/defaultSettings.yaml
+\end{Verbatim}
 
-\subsection{Single File Project}
+To modify, I created a file \verb|~/.indentconfig.yaml| as:
+\begin{Verbatim}
+# Paths to user settings for latexindent.pl
+paths:
+- ~/projects/latex-shared/latexindent.yaml
+\end{Verbatim}
+
+The file \verb|latexindent.yaml| is managed in my git repo.
+Other settings: \url{https://latexindentpl.readthedocs.io/en/latest/index.html}.
+
+\section{Project structure}
+
+\subsection{Shared files}
+
+Currently, I have my files used across different \LaTeX\ saved in one
+github repo where I make symbolic link so that I could use shortcuts like probability
+$\PR{X}$ directly by including directly.
+
+\subsection{Single file}
 
 This is the default with one-file project, easy to track.
 
@@ -48,7 +71,7 @@ This is the default with one-file project, easy to track.
 	├── custom-style.cls/def/sty/bst
 \end{Verbatim}
 
-\subsection{Multi-Files Project}
+\subsection{Multi-files}
 
 Below is a larger \LaTeX\ with different chapters:
 
@@ -71,10 +94,10 @@ Below is a larger \LaTeX\ with different chapters:
 % TODO: how to adjust figure size and fonts sizes
 % TODO: BibTex or BibLaTex?
 
-\section{Mathematical Notation}
+\section{Mathematical notation}
 
 It has always been a hassle to organise mathematical notation across different sources,
-in fact, I would go so far as to argue that it is the most annoying thing
+in fact, I would go so far as to argue that this is the most annoying thing
 when one starts reading a book or an article.
 
 However, there \textit{must be} some notational conflicts beyond primary school
@@ -111,7 +134,7 @@ is probably the most comprehensive answer to which fonts are shown in \LaTeX.
 \end{tabular}
 
 
-\subsection{Choose the Right Notation and Shortcuts}
+\subsection{Choose the notations and shortcuts wisely}
 
 I am not even talking about the difference due to differences in fonts and italic or roman.
 It is just a very sad thing that we don't even have a unified way of saying probability is just sad.

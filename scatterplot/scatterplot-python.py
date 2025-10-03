@@ -2,6 +2,7 @@ import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
+from matplotlib.ticker import MaxNLocator
 
 # rcParams.update({
 #     "text.usetex": False
@@ -16,12 +17,17 @@ y = norm.pdf(x)
 
 fig, ax = plt.subplots(figsize=(WIDTH_IN, HEIGHT_IN))
 
-ax.plot(x, y, label=f'Prior', linewidth=1)
+ax.plot(x, y, label=r'$\mathcal{N}(0, 1)$', linewidth=1, color='red')
+
+ax.plot(x, norm.pdf(x, loc=0, scale=4), label=r'$\mathcal{N}(0, 4)$', linewidth=1, color='blue')
 
 # ax.set_title('Normal distribution $\\mathcal{N}(0,1)$')
-ax.set_xlabel('$x$')
-ax.set_ylabel('$y$')
+ax.set_xlabel('Python and LaTex: $x$')
+ax.set_ylabel('Python and LaTex: $y$')
 ax.set_ylim(bottom=np.max(y) * -0.05, top=np.max(y) * 1.05) 
+ax.xaxis.set_major_locator(MaxNLocator(5))
+ax.yaxis.set_major_locator(MaxNLocator(5))
+ax.legend() 
 
-plt.tight_layout(pad=0)
+plt.tight_layout(pad=0.1)
 plt.savefig("scatterplot-python.pdf", format='pdf') 

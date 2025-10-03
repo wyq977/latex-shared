@@ -9,7 +9,7 @@ all: format build clean
 # Format silently, no backups or logs
 format:
 	@echo "Formatting $(TEXFILE)..."
-	@latexindent -m -s -b=0 -l="" "LaTex-setup.tex" > /dev/null 2>&1
+	@latexindent -m -s -b=0 "LaTex-setup.tex" > /dev/null 2>&1
 
 # Build silently, using extra folders for inputs
 build:

@@ -1,9 +1,10 @@
 \documentclass[tikz,border=0pt]{standalone}
 \usepackage{pgfplots}
-\usepackage{times}
-\usepackage[scaled=.9]{helvet}
+\usepackage{newtxtext}
+% \usepackage{times}
+% \usepackage[scaled=.9]{helvet}
 %\renewcommand{\familydefault}{\sfdefault}
-\pgfplotsset{compat=1.18,width=3in,height=2.25in}
+\pgfplotsset{compat=1.18,width=2.8in,height=2.1in}
 
 % Apply the exact pt dimensions to the axis environment
 \begin{document}
@@ -30,9 +31,10 @@
 
 \addplot[color=red] coordinates {(1,1) (2,2) (3,3)};
 \addplot[color=blue] coordinates {(1,2) (2,1.5) (3,2.5)};
+
 %\addplot table[x=dof, y=L2] {data.dat};
 
-\legend{A,B}
+\legend{A $A$ ,B $B$}
 
 \end{axis}
 \end{tikzpicture}

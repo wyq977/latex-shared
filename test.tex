@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath} % For math environments
+\usepackage[margin=1in]{geometry}
+
+\title{A Document to be Formatted}
+\author{Test User}
+
+\begin{document}
+\maketitle
+
+\section{Introduction} This is the first section.
+There is some text here. The Pythagorean theorem states that a
+This is another sentence in the same paragraph but on a new line for no good reason.
+
+\subsection{Some Items}
+Here is a list of items:
+\begin{itemize}
+	\item First item.
+	\item Second item with bad indentation.
+	\item A nested item.
+	\item Third item back at the top level.
+\end{itemize}
+
+Another paragraph follows the list. We can also write display math.
+\begin{align*}
+	f(x)  & = x^3 - 2x^2 + 5x - 1 \
+	g'(x) & = 3x^2 - 4x+5
+\end{align*}
+The alignment markers in the source code above are not vertically aligned.
+
+\section{Conclusion}
+This is the final section.
+\begin{enumerate}
+	\item One point.
+	\item Another point.
+\end{enumerate}
+% A comment at the end.
+\end{document}
