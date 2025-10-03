@@ -3,7 +3,7 @@
 This repo can be seen as a example document following the best
 practices (set by me).
 
-Read [PDF](https://raw.githubusercontent.com/wyq977/latex-shared/refs/heads/main/main.pdf)
+Read [PDF](https://raw.githubusercontent.com/wyq977/latex-shared/main/main.pdf)
 
 ## Others
 

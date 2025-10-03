@@ -30,8 +30,8 @@ exported to BibTex format, then included via \verb|natbib|.
 
 Sometimes you will see warnings like
 \begin{Verbatim}
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
-(Font)              size <5> substituted on input line 50.
+	LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5> not available
+	(Font)              size <5> substituted on input line 50.
 \end{Verbatim}
 
 It is usually solved by \verb|lmodern|, \verb|anyfontsize| and \verb|fix-cm| (which I used) packages.
@@ -41,14 +41,14 @@ It is usually solved by \verb|lmodern|, \verb|anyfontsize| and \verb|fix-cm| (wh
 Ended up using the \verb|latexindent| that comes with MacTeX distribution.
 It can be updated in TeX Live Utility.app, the default settings can be found in \verb|indent.log|:
 \begin{Verbatim}
-/usr/local/texlive/2025/texmf-dist/scripts/latexindent/defaultSettings.yaml
+	/usr/local/texlive/2025/texmf-dist/scripts/latexindent/defaultSettings.yaml
 \end{Verbatim}
 
 To modify, I created a file \verb|~/.indentconfig.yaml| as:
 \begin{Verbatim}
-# Paths to user settings for latexindent.pl
-paths:
-- ~/projects/latex-shared/latexindent.yaml
+	# Paths to user settings for latexindent.pl
+	paths:
+	- ~/projects/latex-shared/latexindent.yaml
 \end{Verbatim}
 
 The file \verb|latexindent.yaml| is managed in my git repo.
@@ -103,6 +103,8 @@ Below is a larger \LaTeX\ with different chapters:
 % TODO: how to adjust figure size and fonts sizes
 % TODO: BibTex or BibLaTex?
 
+\newpage
+
 \section{Plotting}
 
 \subsection{Take-home messages}
@@ -114,65 +116,72 @@ Below is a larger \LaTeX\ with different chapters:
 	\item some white space or hfill to avoid flushing the plots
 \end{itemize}
 
+Why all the troubles? This is just to solve the problem:
+there should be no scaling involved from the included figures
+to the \LaTeX\ document so that the font size (e.g. 8) in
+figures produced by R/Python will also be 8 in final pdf.
+If not, there might be some scaling, you never know!
 
-The most common file I used is \verb|\documentclass[preprint,aos]{imsart}|
-and the \verb|\linewidth| is \printinunitsof{in}\prntlen{\linewidth},
-\printinunitsof{cm}\prntlen{\linewidth}, \printinunitsof{pt}\prntlen{\linewidth},
-\printinunitsof{bp}\prntlen{\linewidth}.
+\begin{table}[ht]
+	\centering
+	\caption{linewidth of aos preprint}
+	\begin{tabular}{ll}
+		\toprule
+		unit & length                                  \\
+		\midrule
+		in   & \printinunitsof{in}\prntlen{\linewidth} \\
+		cm   & \printinunitsof{cm}\prntlen{\linewidth} \\
+		pt   & \printinunitsof{pt}\prntlen{\linewidth} \\
+		bp   & \printinunitsof{bp}\prntlen{\linewidth} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-To be consistent about the unit used in different plotting, \emph{inch} 
-is used as \verb|matplotlib| only use inches (integer). 
-Another thing to note that 1 in is 72.27 pt while other is 72 pt.
+To be consistent about the unit used in different plotting, \emph{inch}
+is used mainly due to matplotlib.
+Another thing to note that 1 in is 72.27 pt while other is 72 pt,
+which is another thing to note in TikZ.
 
-The exact code to reproduce the plots in R and TikZ are in the same folder.
 However, the TikZ did not output a pdf file at 2.8x2.1in despite explicit specification.
 No solution is found so I will stick to R for the time being.
 
-Between subfigure, a small spacing is added.
+Between subfigure, a small spacing is added. Please check the
+document source code.
 
 \begin{table}[ht]
-\centering
-\caption{Suggested width and height in cm for 4:3 aspect ratio}
-\begin{tabular}{lcc}
-\toprule
-            & width & height \\
-\midrule
-Single plot & 12.8  & 9.6    \\
-Two plots   & 6.4   & 4.8    \\
-\bottomrule
-\end{tabular}
+	\centering
+	\caption{Suggested width and height in inches for aos document}
+	\begin{tabular}{lcc}
+		\toprule
+		            & width & height \\
+		\midrule
+		Single plot & 5.6   & 4.2    \\
+		Two plots   & 2.8   & 2.1    \\
+		\bottomrule
+	\end{tabular}
 \end{table}
 
 \begin{figure}[htb]
-    \centering
-    \begin{subfigure}[t]{2.8in}
-        \includegraphics{scatterplot-tikz.pdf}
-        \caption{TikZ}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{2.8in}
-        \includegraphics[width=2.8in]{scatterplot-R.pdf}
-        \caption{R}
-    \end{subfigure}
-
-    \caption{TikZ vs R plots, exact physical size, no scaling.}
+	\centering
+	\includegraphics{scatterplot-tikz.pdf}
+	\caption{TikZ, exact physical size, no scaling.}
 \end{figure}
 
 \begin{figure}[htb]
-    \centering
-    \begin{subfigure}[t]{2.8in}
-        \includegraphics{scatterplot-python.pdf}
-        \caption{Python $x$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{2.8in}
-        \includegraphics{scatterplot-R.pdf}
-        \caption{R}
-    \end{subfigure}
+	\centering
+	\begin{subfigure}[t]{2.8in}
+		\includegraphics{scatterplot-python.pdf}
+		\caption{Python $x$}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{2.8in}
+		\includegraphics{scatterplot-R.pdf}
+		\caption{R}
+	\end{subfigure}
 
-    \caption{Python vs R plots, exact physical size, no scaling.}
+	\caption{Python vs R plots, exact physical size, no scaling.}
 \end{figure}
 
 \newpage
-
 \section{Mathematical notation}
 
 It has always been a hassle to organise mathematical notation across different sources,
