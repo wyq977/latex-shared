@@ -1,7 +1,9 @@
 % This is file `imsart.sty'
 
 %% CHANGELOG:
-%% 2025-10-03: add fix-cm in aos to avoid warnings
+%% 2025-10-03: 
+%%	- add fix-cm in aos to avoid warnings
+%%	- fix it and sc in Table name
 %% 
 %%
 %% LaTeX 2e style file for the processing of LaTeX2e files
@@ -1287,7 +1289,8 @@
     }
 %
 \setpkgattr{tablecaption}{shape}{\centering}
-\setpkgattr{tablecaption}{size}{\footnotesize\itshape}
+% \setpkgattr{tablecaption}{size}{\footnotesize\itshape}
+\setpkgattr{tablecaption}{size}{\footnotesize}
 \setpkgattr{tablename}{size}{\scshape}
 \setpkgattr{tablename}{skip}{\endgraf}
 %
