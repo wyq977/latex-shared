@@ -9,6 +9,11 @@
 % https://stackoverflow.com/questions/55036409/latex-verbatimhow-to-show-the-file-directoy-created-by-tree-command
 \usepackage[utf8]{inputenc}
 \usepackage{pmboxdraw}
+\usepackage{layouts}                             % \printinunitsof
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\graphicspath{{fig/}{fig/scatterplot/}}
 
 \begin{document}
 
@@ -48,6 +53,10 @@ paths:
 
 The file \verb|latexindent.yaml| is managed in my git repo.
 Other settings: \url{https://latexindentpl.readthedocs.io/en/latest/index.html}.
+
+\section{Referencing}
+
+% TODO: add
 
 \section{Project structure}
 
@@ -94,6 +103,76 @@ Below is a larger \LaTeX\ with different chapters:
 % TODO: how to adjust figure size and fonts sizes
 % TODO: BibTex or BibLaTex?
 
+\section{Plotting}
+
+\subsection{Take-home messages}
+
+\begin{itemize}
+	\item w:h = 4:3
+	\item w = 2.8in: <= 0.45 of the linewidth
+	\item no scaling
+	\item some white space or hfill to avoid flushing the plots
+\end{itemize}
+
+
+The most common file I used is \verb|\documentclass[preprint,aos]{imsart}|
+and the \verb|\linewidth| is \printinunitsof{in}\prntlen{\linewidth},
+\printinunitsof{cm}\prntlen{\linewidth}, \printinunitsof{pt}\prntlen{\linewidth},
+\printinunitsof{bp}\prntlen{\linewidth}.
+
+To be consistent about the unit used in different plotting, \emph{inch} 
+is used as \verb|matplotlib| only use inches (integer). 
+Another thing to note that 1 in is 72.27 pt while other is 72 pt.
+
+The exact code to reproduce the plots in R and TikZ are in the same folder.
+However, the TikZ did not output a pdf file at 2.8x2.1in despite explicit specification.
+No solution is found so I will stick to R for the time being.
+
+Between subfigure, a small spacing is added.
+
+\begin{table}[ht]
+\centering
+\caption{Suggested width and height in cm for 4:3 aspect ratio}
+\begin{tabular}{lcc}
+\toprule
+            & width & height \\
+\midrule
+Single plot & 12.8  & 9.6    \\
+Two plots   & 6.4   & 4.8    \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{2.8in}
+        \includegraphics{scatterplot-tikz.pdf}
+        \caption{TikZ}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{2.8in}
+        \includegraphics[width=2.8in]{scatterplot-R.pdf}
+        \caption{R}
+    \end{subfigure}
+
+    \caption{TikZ vs R plots, exact physical size, no scaling.}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{2.8in}
+        \includegraphics{scatterplot-python.pdf}
+        \caption{Python $x$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{2.8in}
+        \includegraphics{scatterplot-R.pdf}
+        \caption{R}
+    \end{subfigure}
+
+    \caption{Python vs R plots, exact physical size, no scaling.}
+\end{figure}
+
+\newpage
+
 \section{Mathematical notation}
 
 It has always been a hassle to organise mathematical notation across different sources,
@@ -132,7 +211,6 @@ is probably the most comprehensive answer to which fonts are shown in \LaTeX.
 	$\Bc$           & \verb|\*c|     & calligraphic font                                 \\
 	$\Bk$           & \verb|\*k|     & Fraktur font                                      \\
 \end{tabular}
-
 
 \subsection{Choose the notations and shortcuts wisely}
 
