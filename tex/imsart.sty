@@ -1,9 +1,11 @@
 % This is file `imsart.sty'
 
 %% CHANGELOG:
-%% 2025-10-03: 
+%% 2025-10-03:
 %%	- add fix-cm in aos to avoid warnings
 %%	- fix it and sc in Table name
+%% 2025-10-06:
+%%	- replace times with newtxtext
 %% 
 %%
 %% LaTeX 2e style file for the processing of LaTeX2e files
@@ -2852,7 +2854,7 @@
 % Set up parameters for the IMS journals (AOP, AAP, AOS) layout:
 \if@imslayout
     \RequirePackage[T1]{fontenc}
-    \RequirePackage{times}
+    \RequirePackage{newtxtext} % replacing outdated times 
     \RequirePackage[scaled=.9]{helvet}
     \RequirePackage{textcomp}
     \RequirePackage{textcase}
@@ -3161,7 +3163,7 @@
     \renewcommand\huge{\@setfontsize\huge\@xviiipt{20}}
     \renewcommand\Huge{\@setfontsize\Huge\@xxpt{24}}
     \RequirePackage[T1]{fontenc}
-    \RequirePackage{times}
+    \RequirePackage{newtxtext}
     \RequirePackage[scaled=.9]{helvet}
     \RequirePackage{textcomp}
     \RequirePackage{textcase}
@@ -3699,7 +3701,7 @@
     \renewcommand\Huge{\@setfontsize\Huge\@xxpt{24}}
     %
     \RequirePackage[T1]{fontenc}
-    \RequirePackage{times}
+    \RequirePackage{newtxtext} % replacing outdated times
     \RequirePackage[scaled=.9]{helvet}
     \RequirePackage{textcomp}
     %
@@ -3829,7 +3831,7 @@
     \renewcommand\Huge{\@setfontsize\Huge\@xxpt{24}}
     %
     \RequirePackage[T1]{fontenc}
-    \RequirePackage{times}
+    \RequirePackage{newtxtext} % replacing outdated times
     \RequirePackage[scaled=.9]{helvet}
     \RequirePackage{textcomp}
     \normalfont\normalsize
