@@ -1,0 +1,26 @@
+% https://tex.stackexchange.com/questions/639115/how-to-draw-convex-strictly-convex-and-nonconvex-sets
+
+\documentclass[pstricks,border=12pt]{standalone}
+\usepackage{pstricks}
+\usepackage{pstricks-add} % Added this package for \qdisk and \psccurve
+\usepackage[shell-escape]{auto-pst-pdf}
+
+\begin{document}
+\begin{pspicture}[showgrid=false](0.75,0)(9.5,4)
+    \psset{fillstyle=solid,fillcolor=gray}
+    % left
+    \pscustom{\psparabola(1,1)(2,3)\closepath}
+    \qdisk(1.5,1){2pt}
+    \qdisk(2.5,1){2pt}
+    % middle
+    \psccurve(5,0.5)(4,1.5)(5,3.5)(6,1.5)
+    \qdisk(5,1.5){2pt}
+    \qdisk(5,2.5){2pt}
+    \psline(5,1.5)(5,2.5)
+    % right
+    \psccurve(7,3.5)(8,2.8)(9,3.5)(8,0.5)
+    \qdisk(7,3){2pt}
+    \qdisk(9,3){2pt}
+    \psline(7,3)(9,3)
+\end{pspicture}
+\end{document}

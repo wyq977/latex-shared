@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{%
+    ,arrows
+    ,arrows.meta
+    ,calc
+    ,fit
+    ,hobby
+    ,positioning
+}
+
+\begin{document}
+    \centering
+    \begin{tikzpicture}[>=latex']
+    \pgfmathsetmacro{\rU}{.7}
+    \pgfmathsetmacro{\rV}{1}
+    \draw
+    (0, 0) to [closed, curve through = {(1, 1) .. (1, .5) .. (3, .5)}] (5,0);
+    \coordinate (a) at (2.5, -.6);
+    \fill[red] (a) circle [radius=2pt] node [anchor=north] {$a$};
+    \coordinate (x) at ($(2.5, -.6)+(10:.7*\rU cm)$);
+    \fill (x) circle [radius=2pt] node [anchor=south] {$x$};
+    \draw [dashed, red] (a) circle [radius=\rU cm];
+    \draw [red] (a) --++ (160:\rU cm) node [above, sloped, pos=.5] {$\eta$};
+    
+    \begin{scope}[xshift=9cm]
+    \draw [use Hobby shortcut]
+    ([closed]0, 0) .. (1, .5) .. (2, 0) .. (3, .8) .. (5, 0);
+    \coordinate (fa) at (2.5, -1.6);
+    \fill[blue] (fa) circle [radius=2pt] node [anchor=north] {$f(a)$};
+    \coordinate (fx) at ($(2.5, -1.6)+(170:.7*\rU cm)$);
+    \fill (fx) circle [radius=2pt] node [anchor=south] {$f(x)$};
+    \draw [dashed, blue] (fa) circle [radius=\rV cm];
+    \draw [blue] (fa) --++ (20:\rV cm) node [above, sloped, pos=.5] {$\epsilon$};
+    \end{scope}
+    \draw [->, black] (x) to [bend left=20] (fx);
+    \end{tikzpicture}
+\end{document}
