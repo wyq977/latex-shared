@@ -20,7 +20,7 @@
 \title{\LaTeX\ Project Management}
 
 To be consistent for most \LaTeX\ projects,
-I choose AOS's preprint version as the default, please check
+I choose AOS's preprint version as the defxault, please check
 \url{https://vtex-soft.github.io/texsupport.ims-aos/} for more details.
 
 The references are managed externally by Zotero and BBT,
@@ -109,6 +109,8 @@ Below is a larger \LaTeX\ with different chapters:
 
 \subsection{Take-home messages}
 
+Should I use sans-serif fonts in the figures or just serif.
+
 \begin{itemize}
 	\item w:h = 4:3
 	\item w = 2.8in: <= 0.45 of the linewidth
@@ -161,8 +163,10 @@ document source code.
 		\toprule
 		            & width & height \\
 		\midrule
-		Single plot & 5.6   & 4.2    \\
-		Two plots   & 2.8   & 2.1    \\
+		Single      & 5.6   & 4.2    \\
+		Two         & 2.8   & 2.1    \\
+		Single (AI) & 5.6   & 3.5    \\
+		Two (AI)    & 2.7   & 2.2    \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -186,6 +190,54 @@ document source code.
 
 	\caption{Python vs R plots, exact physical size, no scaling.}
 \end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{2.7in}
+		\includegraphics{scienceplots/mine.pdf}
+		\caption{Custom parameters}
+	\end{subfigure}\hfill
+	\begin{subfigure}[t]{2.7in}
+		\includegraphics{scienceplots/SciencePlots.pdf}
+		\caption{SciencePlots}
+	\end{subfigure}
+
+	\caption{Custom matplotlib vs SciencePlots}
+\end{figure}
+
+I found a python pkg that plots exactly how I like it, \href{https://github.com/garrettj403/SciencePlots?tab=readme-ov-file}{SciencePlots}.
+Below is the config I set in matplotlib, as you can see, this is very annoying to change and maintain.
+Be sure to set the figure to \verb|constrained| in layout to get the exact size.
+
+\begin{verbatim}
+	"text.usetex": True,
+    "text.latex.preamble": r"\usepackage{amsmath}\usepackage{newtxtext,newtxmath}",
+    "font.family": "serif",
+    
+    # --- Sizes and Weights ---
+    "font.size": 11,               # Matches \normalsize
+    "axes.labelsize": 11,          # Matches \normalsize
+    "xtick.labelsize": 9,          # Matches \footnotesize
+    "ytick.labelsize": 9,          # Matches \footnotesize
+    "legend.fontsize": 9,          # Matches \footnotesize
+    
+    "lines.linewidth": 1.25,       # Clean visibility
+    "axes.linewidth": 0.8,         # Standard LaTeX line weight
+    "patch.linewidth": 0.8,
+    
+    "xtick.major.width": 0.8,
+    "ytick.major.width": 0.8,
+    "xtick.major.size": 3.5,
+    "ytick.major.size": 3.5,
+    "xtick.direction": "in",
+    "ytick.direction": "in",
+    
+    # --- Formatting ---
+    "legend.edgecolor": "black",
+    "legend.framealpha": 1.0,
+    "legend.fancybox": False,
+    "axes.titlepad": 12,           # Matches setpkgattr{title}{skip}{12pt}
+\end{verbatim}
 
 \newpage
 \section{Mathematical notation}
@@ -235,9 +287,28 @@ Take probability for example and return to the most basic case of tossing a
 coin
 where the sample space is $\Ac = \{H, T\}$. I have come across:
 
+Spacing difference caused by symbol declaration.
 \begin{align*}
-	P() \quad \mathrm{P}() \quad \mathrm{Pr}() \quad \mathsf{P}() \quad
-	\mathbf{Prob}().
+	&p(x\mid\theta) \\
+	&\PR[p]{x\mid\theta}\\
+	&\condPR[p]{x}{\theta}
 \end{align*}
+
+\begin{table}[ht]
+	\centering
+	\caption{Probability and expectation notation}
+	\begin{tabular}{lcccc}
+		\toprule
+		 & Probability &  Expectation & Prob (line) & Exp (line) \\
+		\midrule
+		mathrm & $\PR{x}$ & $\ERW[\mathrm{E}]{x}$ & $\condPR{x}{\theta}$ & $\condERW{x}{\theta}$ \\
+		mathsf & $\PR[\mathsf{P}]{x}$   & $\ERW[\mathsf{E}]{x}$ & $\condPR[\mathsf{P}]{x}{\theta}$ & $\condERW[\mathsf{E}]{x}{\theta}$ \\
+		mathbb & $\PR[\mathbb{P}]{x}$   & $\ERW[\mathbb{E}]{x}$ & $\condPR[\mathbb{P}]{x}{\theta}$ & $\condERW[\mathbb{E}]{x}{\theta}$ \\
+		mathit & $\PR[\mathit{P}]{x}$   & $\ERW[\mathit{E}]{x}$ & $\condPR[\mathit{P}]{x}{\theta}$ & $\condERW[\mathit{E}]{x}{\theta}$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
 
 \end{document}

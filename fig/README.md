@@ -3,6 +3,8 @@
 The goal is to have consistent figures across different languages.
 This is usually hard, so it's best to plot everything in R or python only
 
+https://github.com/MartinThoma/LaTeX-examples/
+
 Assumptions:
 * width is 2.8 in and height is 2.1 in.
 * no titles, should be set in LaTeX
