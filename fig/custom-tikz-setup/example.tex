@@ -1,0 +1,67 @@
+\documentclass[tikz,border=5pt]{standalone}
+
+\input{mytikz}
+
+\pgfplotsset{width=5.6in,height=3.1in,
+			 cycle list/Set1}
+
+% --- 3. Define a Master Style for a Consistent Look ---
+\pgfplotsset{
+    masterplotstyle/.style={
+        axis lines=box,
+        tick align=outside,
+        tick style={draw=black, major tick length=3pt, line width=0.4pt},
+        xtick pos=bottom, ytick pos=left,
+        % Append styles to the existing keys for better compatibility
+        title style={font=\mytitlefont},
+        every axis label/.append style={font=\mylabelfont},
+        every tick label/.append style={font=\mytickfont},
+        legend pos=south east,
+        legend cell align={left},
+        legend style={
+            font=\mylegendfont,
+        	draw=black,
+            line width=0.4pt
+        },
+
+        every axis plot/.append style={
+            no markers,
+            opacity=0.9
+        },
+    }
+}
+
+
+\begin{document}
+\begin{tikzpicture}
+% --- 5. Create the plot using your master style ---
+\begin{axis}[
+    masterplotstyle,    % This one command applies all your styling!
+    title={\mytitle},     % Use the variables
+    xlabel={\myxlabel},
+    ylabel={\myylabel},
+    domain=-5:5,          % Set x-range for all plots
+    samples=101,          % Number of points to calculate
+    enlarge x limits=0.05,
+    cycle list name=Set1-5,
+]
+    % --- 6. Add the plot data ---
+    % The plots will automatically cycle through the 'Set1-9' colors.
+    \addplot {x^2};
+    \addlegendentry{$y = x^2$}
+
+    \addplot {sin(deg(x)) * 5}; % Use deg() to convert x to degrees for sin()
+    \addlegendentry{$y = 5\sin(x)$}
+
+    \addplot {exp(x/2)};
+    \addlegendentry{$y = e^{x/2}$}
+
+    \addplot {-0.5*x^2 + 10};
+    \addlegendentry{$y = -0.5x^2 + 10$}
+
+    \addplot {2*x + 3};
+    \addlegendentry{$y = 2x + 3$}
+
+\end{axis}
+\end{tikzpicture}
+\end{document}

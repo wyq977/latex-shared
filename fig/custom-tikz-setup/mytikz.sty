@@ -1,0 +1,56 @@
+% A reusable package for creating consistent, publication-quality plots.
+
+% Style:
+% Helvetica font for all
+% 12pt for x/y label
+% 
+
+% CHANGELOG:
+% 2025-10-15:
+%	- created!
+
+\ProvidesPackage{mytikz}
+
+% --- 1. Load Core Packages ---
+\RequirePackage{pgfplots}
+\RequirePackage[scaled=.9]{helvet}
+\RequirePackage[helvet]{sfmath}
+\RequirePackage{sansmath}
+\renewcommand*\familydefault{\sfdefault}
+\everymath={\sf}
+\pgfplotsset{compat=1.18}                         % Set compatibility for all plots
+
+% --- 2. Define Programmable Variables (Macros) for Fonts ---
+% These commands hold the values for your plot settings.
+\newcommand{\mylabelfont}{\fontsize{12}{14}\selectfont}
+\newcommand{\mytickfont}{\fontsize{7}{9}\selectfont\sansmath}
+\newcommand{\mylegendfont}{\fontsize{7}{9}\selectfont}
+\newcommand{\mytitlefont}{\fontsize{12}{14}\selectfont}
+
+% --- 3. Define a Master Style for a Consistent Look ---
+% This style uses the variables defined above. Using '.append style' is more
+% robust and avoids conflicts with pgfplots internal styles.
+\pgfplotsset{
+    masterplotstyle/.style={
+        axis lines=box,
+        tick align=outside,
+        tick style={draw=black, major tick length=3pt, line width=0.4pt},
+        xtick pos=bottom, ytick pos=left,
+        % Append styles to the existing keys for better compatibility
+        title style={font=\mytitlefont},
+        every axis label/.append style={font=\mylabelfont},
+        every tick label/.append style={font=\mytickfont},
+        legend pos=south east,
+        legend cell align={left},
+        legend style={
+            font=\mylegendfont,
+        	draw=black,
+            line width=0.4pt
+        },
+
+        every axis plot/.append style={
+            no markers,
+            opacity=0.9
+        },
+    }
+}
