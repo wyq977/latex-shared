@@ -1,0 +1,26 @@
+% A reusable package for creating consistent, publication-quality plots.
+% ref: 
+% https://mirror.las.iastate.edu/tex-archive/graphics/pgf/contrib/pgfplots/tex/pgfplots.sty
+
+
+% CHANGELOG:
+% 2025-10-15:
+%	- created!
+
+\ProvidesPackage{mytikz}[My PGFPlots Styles]
+
+\RequirePackage{pgfplots}
+\RequirePackage[scaled=.9]{helvet}
+\RequirePackage[helvet]{sfmath}
+\RequirePackage{sansmath}
+\renewcommand*\familydefault{\sfdefault}
+\everymath={\sf}
+\pgfplotsset{compat=1.18}
+
+
+
+
+% Set a compatibility version for stable output
+\pgfplotsset{compat=1.18}
+
+% Define a collection of styles
